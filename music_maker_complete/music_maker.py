@@ -36,7 +36,7 @@ playCheck = False
 
 #Button Class
 class button(pg.sprite.Sprite):
-     def __init__(self, x, y, w, h, color, sound, note, note2):
+     def __init__(self, x, y, w, h, color, sound, sound2, note, note2):
        pg.sprite.Sprite.__init__(self)
        self.image = pg.Surface([w, h])
        self.image.fill(color)
@@ -45,6 +45,8 @@ class button(pg.sprite.Sprite):
        self.text2 = note2
        self.rect = self.image.get_rect()
        self.sound = pg.mixer.Sound(sound)
+       self.sound2 = pg.mixer.Sound(sound2)
+       self.sound3 = pg.mixer.Sound(sound)
        self.rect.x = x
        self.rect.y = y
        self.x = x
@@ -61,30 +63,37 @@ def buildButtons():
     for i in range(0, 105):     
         if i%7 == 0:
              sound = "music_maker_sounds/a_Major_piano.wav"
+             sound2 = "music_maker_sounds/a.mp3"
              note = "A"
              note2 = "A+"
         elif i%7 == 1:
              sound = "music_maker_sounds/b_Major_piano.wav"
+             sound2 = "music_maker_sounds/b.mp3"
              note = "B"
              note2 = "B+"
         elif i%7 == 2:
              sound = "music_maker_sounds/c_Major_piano.wav"
+             sound2 = "music_maker_sounds/c.mp3"
              note = "C"
              note2 = "C+"
         elif i%7 == 3:
              sound = "music_maker_sounds/d_Major_piano.wav"
+             sound2 = "music_maker_sounds/d.mp3"
              note = "D"
              note2 = "D+"
         elif i%7 == 4:
              sound = "music_maker_sounds/e_Major_piano.wav"
+             sound2 = "music_maker_sounds/e.mp3"
              note = "E"
              note2 = "E+"
         elif i%7 == 5:
              sound = "music_maker_sounds/f_Major_piano.wav"
+             sound2 = "music_maker_sounds/f.mp3"
              note = "F"
              note2 = "F+"
         elif i%7 == 6:
              sound = "music_maker_sounds/g_Major_piano.wav"
+             sound2 = "music_maker_sounds/g.mp3"
              note = "G"
              note2 = "G+"
 
@@ -97,7 +106,7 @@ def buildButtons():
             
         x = 35 + (i//7*85)
         
-        Button = button(x, y, w, h, color, sound, note, note2)
+        Button = button(x, y, w, h, color, sound, sound2, note, note2)
         newList.append(Button)
         if len(newList) >= 7:
              columns.append(newList)
@@ -146,29 +155,31 @@ def switchOctave(boolean, button):
      if boolean:
           for c in columns[octaveSprites.sprites().index(button)]:
                c.text = c.text2
+               c.sound = c.sound2
      elif boolean == False:
           for c in columns[octaveSprites.sprites().index(button)]:
                c.text = c.text.replace("+", "")
+               c.sound = c.sound3
 
 #Creating the Buttons  
 buildButtons()
 
-playButton = button(718.75, 35, 187.5, 50, blue, "music_maker_sounds/bruh.mp3", "bruh", "bruh")
+playButton = button(718.75, 35, 187.5, 50, blue, "music_maker_sounds/bruh.mp3", "music_maker_sounds/bruh.mp3", "bruh", "bruh")
 playSprites.add(playButton)
 
-clearButton = button(503.75, 35, 187.5, 50, blue, "music_maker_sounds/bruh.mp3", "bruh", "bruh")
+clearButton = button(503.75, 35, 187.5, 50, blue, "music_maker_sounds/bruh.mp3", "music_maker_sounds/bruh.mp3", "bruh", "bruh")
 clearSprites.add(clearButton)
 
 octaveX = 42.5
 
 for i in range(15):
-     octaveButton = button(octaveX, 720, 40, 40, blue, "music_maker_sounds/bruh.mp3", "bruh", "bruh")
+     octaveButton = button(octaveX, 720, 40, 40, blue, "music_maker_sounds/bruh.mp3", "music_maker_sounds/bruh.mp3", "bruh", "bruh")
      octaveSprites.add(octaveButton)
      octaveX += 85
 
-bruhButton = button(1310, 290, 50, 50, blue, "music_maker_sounds/bruh.mp3", "Br", "bruh")
-oofButton = button(1310, 375, 50, 50, blue, "music_maker_sounds/oof.mp3", "Of", "oof")
-naniButton = button(1310, 460, 50, 50, blue, "music_maker_sounds/Nani.mp3", "Na", "oof")
+bruhButton = button(1310, 290, 50, 50, blue, "music_maker_sounds/bruh.mp3", "music_maker_sounds/bruh.mp3", "Br", "bruh")
+oofButton = button(1310, 375, 50, 50, blue, "music_maker_sounds/oof.mp3", "music_maker_sounds/bruh.mp3", "Of", "oof")
+naniButton = button(1310, 460, 50, 50, blue, "music_maker_sounds/Nani.mp3", "music_maker_sounds/bruh.mp3", "Na", "oof")
 memeSprites.add(bruhButton, oofButton, naniButton)
 columns.append(memeSprites.sprites())
 
