@@ -1,2 +1,2 @@
 # Music-Maker-Thingie
-this is for a project
+You've found my Music Maker Code and stuff. This collection contains the main music maker script, as well as all of the sounds I used. Note that this code is 100% original and that I wrote it from scratch.
